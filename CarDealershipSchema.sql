@@ -8,6 +8,12 @@ create table dealerships(
 	primary key(dealership_id)
 );
 
+alter table inventory
+add foreign key(dealership_id) references dealerships(dealership_id);
+
+alter table inventory
+add foreign key(vin) references vehicle(vin);
+
 create table vehicle(
     vin int,
     `year` int,
@@ -22,9 +28,10 @@ create table vehicle(
 );
 
 create table inventory(
+	inventory_id int not null auto_increment,
 	dealership_id int,
     vin int,
-    primary key(vin)
+    primary key(inventory_id)
 );
 
 create table sales_contracts(
